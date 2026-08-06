@@ -1,0 +1,45 @@
+# ============================================================================
+# J.A.R.V.I.S. — additional requirements
+# ============================================================================
+# The original Android-controller project used ONLY the Python standard
+# library (subprocess, urllib, re, json, etc.) — zero third-party packages.
+# This file lists ONLY the new packages added for the JARVIS voice + GUI
+# upgrade. tkinter itself is part of the standard library on Windows/macOS
+# Python installers (on some minimal Linux distros you may need your
+# package manager's "python3-tk" package as well — see README).
+#
+# Install with:
+#   pip install -r requirements.txt
+# ============================================================================
+
+# Microphone speech-to-text (uses Google's free web speech API under the hood)
+SpeechRecognition>=3.10.4
+
+# Microphone audio capture backend required by SpeechRecognition
+PyAudio>=0.2.14
+
+# Text-to-speech synthesis (Google Text-to-Speech, requires internet)
+gTTS>=2.5.3
+
+# Audio playback for the synthesized speech (cross-platform, no external
+# player binary like mpg123/ffplay needed)
+pygame>=2.6.0
+
+# Live system telemetry (CPU / RAM / network throughput) for the HUD
+# telemetry strip. GPU usage additionally uses "nvidia-smi" if present on
+# the system PATH (no pip package needed for that part; NVIDIA driver
+# install already provides it). Non-NVIDIA GPUs show "N/A" — there is no
+# universal cross-vendor GPU-usage API available without vendor SDKs.
+psutil>=5.9.8
+
+# NOTE: web_search.py (DuckDuckGo + Google News RSS + optional Tavily)
+# uses only the Python standard library (urllib, xml.etree) — no new
+# package needed for search itself. Tavily just needs TAVILY_API_KEY set
+# in .env, see .env.example.
+
+# Image processing for Gemini Vision screenshot resizing.
+# gemini_vision.py resizes screenshots to ≤960px before encoding to base64,
+# keeping Gemini API payload sizes small and response times fast.
+# OPTIONAL but strongly recommended — without it, full-resolution screenshots
+# are sent to Gemini, which is slower and uses more quota.
+Pillow>=10.0.0

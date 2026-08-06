@@ -1,0 +1,21 @@
+# ============================================================================
+# Requirements for the CLOUD WEB DEPLOYMENT ONLY (server.py + static/index.html)
+# ============================================================================
+# This is a separate, minimal list from requirements.txt on purpose:
+# requirements.txt is for the original local desktop app (GUI, microphone,
+# ADB phone control) and includes packages like PyAudio/pygame/tkinter that
+# either need native audio/display libraries or don't apply to a headless
+# cloud server, and are not needed for the web chat + search backend.
+#
+# Install with:
+#   pip install -r requirements-web.txt
+#
+# Render (or any platform) build command:
+#   pip install -r requirements-web.txt
+# Start command:
+#   uvicorn server:app --host 0.0.0.0 --port $PORT
+# ============================================================================
+
+fastapi>=0.111.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.7.0
